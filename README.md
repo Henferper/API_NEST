@@ -10,24 +10,7 @@ O projeto utiliza **Node.js**, **Express**, **Prisma ORM** e **PostgreSQL**, exe
 A aplicação segue uma arquitetura em camadas para separar responsabilidades:
 
 
-src
-├── controllers
-│ └── order.js
-│
-├── services
-│ └── order.js
-│
-├── routes
-│ └── order.js
-│
-├── middleware
-│ └── auth.js
-│
-├── utils
-│ └── mapper.js
-│
-└── prisma
-└── schema.prisma
+![alt text](docs/image.png)
 
 ## Controllers
 Responsáveis por receber as requisições HTTP, validar dados básicos e chamar a camada de serviços.
@@ -52,10 +35,10 @@ Define os endpoints disponíveis na API e liga cada rota ao controller correspon
 
 Exemplo:
 
-POST /orders
-GET /orders
-PUT /orders/:orderId
-DELETE /orders/:orderId
+**POST** /orders  
+**GET** /orders  
+**PUT** /orders/{orderId}  
+**DELETE** /orders/{orderId} 
 
 ## Middleware
 Responsável por funcionalidades transversais, como autenticação.
@@ -66,19 +49,19 @@ Converte dados recebidos de APIs externas ou requests para o formato esperado pe
 Exemplo:
 
 Entrada externa:
-
-{
-"numeroPedido": "v10089015vdb",
-"valorTotal": 10000
+```
+{  
+  "numeroPedido": "v10089015vdb-01",
+  "valorTotal": "10000"
 }
-
+```
 Convertido para:
-
+```
 {
-orderId: "v10089015vdb",
-value: 10000
+    orderId: "v10089015vdb",
+  value: 10000
 }
-
+```
 ## Prisma
 Responsável pelo mapeamento do banco de dados e execução das migrations.
 
@@ -119,9 +102,9 @@ docker-compose up --build
 
 Isso irá iniciar:
 
-API (orders_api)
+- API (orders_api)
 
-Banco de dados PostgreSQL
+- Banco de dados PostgreSQL
 
 ## 3 - Rodar Migrations
 ```bash
@@ -134,7 +117,7 @@ Como Testar a API
 
 URL
 ```bash
-http://localhost:3000/api-docs/#/
+http://localhost:3000/api-docs
 ```
 
 ## 4 - Autenticação
